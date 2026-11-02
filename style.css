@@ -1,0 +1,1524 @@
+/* ========================================================
+   BLOCK BLAST! 脆皮捏捏消消樂 - 視覺設計與主題樣式系統
+   ======================================================== */
+
+:root {
+  --font-main: 'Zen Maru Gothic', 'Fredoka', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-num: 'Fredoka', 'Zen Maru Gothic', sans-serif;
+
+  /* 通用佈局度量 */
+  --board-max-size: 420px;
+  --cell-gap: 5px;
+  --cell-radius: 9px;
+  --transition-fast: 0.15s cubic-bezier(0.2, 0, 0.2, 1);
+  --transition-bounce: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- 主題 0: 甜品午茶 (Sweet Dessert Cafe) --- */
+body.theme-dessert {
+  --bg-main: linear-gradient(145deg, #fff3f5 0%, #fee4ea 50%, #fed0db 100%);
+  --app-bg: rgba(255, 255, 255, 0.65);
+  --text-main: #4a2d36;
+  --text-muted: #855b68;
+  --board-bg: #eecad4;
+  --cell-empty: #fbebf0;
+  --cell-border: #e3bcc8;
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-shadow: 0 8px 24px rgba(186, 114, 139, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.9);
+  --accent-color: #ff5e84;
+  --accent-gradient: linear-gradient(135deg, #ff758c 0%, #ff5e84 100%);
+  --combo-badge-bg: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  --block-style-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.8), inset 0 -3px 4px rgba(0, 0, 0, 0.12), 0 3px 8px rgba(140, 70, 95, 0.18);
+  --block-radius: 12px;
+
+  --c-1: #ff6b8b; /* 草莓慕斯粉 */
+  --c-2: #ff9f43; /* 焦糖香橙 */
+  --c-3: #ffd166; /* 濃郁布丁黃 */
+  --c-4: #48dbfb; /* 蘇打汽水 */
+  --c-5: #66d79f; /* 薄荷馬卡龍 */
+  --c-6: #a29bfe; /* 香芋奶霜紫 */
+  --c-7: #ff7675; /* 覆盆子紅 */
+}
+
+/* --- 主題 0.5: 極地清冰 (Glacial Ice) --- */
+body.theme-ice {
+  --bg-main: linear-gradient(145deg, #f0faff 0%, #dcf1fc 50%, #c4e9fb 100%);
+  --app-bg: rgba(255, 255, 255, 0.7);
+  --text-main: #183e54;
+  --text-muted: #48728d;
+  --board-bg: #aeddf2;
+  --cell-empty: #e2f4fd;
+  --cell-border: #99cfeb;
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-shadow: 0 8px 24px rgba(24, 85, 120, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.95);
+  --accent-color: #00a8ff;
+  --accent-gradient: linear-gradient(135deg, #00d2d3 0%, #00a8ff 100%);
+  --combo-badge-bg: linear-gradient(135deg, #70e1f5 0%, #ffd194 100%);
+  --block-style-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.9), inset 0 2px 6px rgba(255, 255, 255, 0.95), 0 4px 12px rgba(0, 168, 255, 0.22);
+  --block-radius: 9px;
+
+  --c-1: #00d2d3; /* 沁心青冰 */
+  --c-2: #54a0ff; /* 極光湛藍 */
+  --c-3: #48dbfb; /* 蘇打冰晶 */
+  --c-4: #99f2c8; /* 薄荷雪花 */
+  --c-5: #ff9ff3; /* 莓果冰棒 */
+  --c-6: #feca57; /* 芒果刨冰 */
+  --c-7: #5f27cd; /* 藍莓冰鑽 */
+}
+
+/* --- 主題 1: 脆皮捏捏 (Crunchy Squishy / Taba Clay) --- */
+body.theme-crunchy {
+  --bg-main: linear-gradient(145deg, #fff0f3 0%, #ffe3ea 50%, #fbd1dc 100%);
+  --app-bg: rgba(255, 255, 255, 0.65);
+  --text-main: #543847;
+  --text-muted: #8e687b;
+  --board-bg: #edd3db;
+  --cell-empty: #f8e5eb;
+  --cell-border: #e3bcc8;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-shadow: 0 8px 24px rgba(186, 114, 139, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.9);
+  --accent-color: #ff5e84;
+  --accent-gradient: linear-gradient(135deg, #ff758c 0%, #ff5e84 100%);
+  --combo-badge-bg: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%);
+  
+  /* 方塊外觀：像上了酥脆糖霜的捏捏樂，微凸光澤質感 */
+  --block-style-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.75), inset 0 -3px 4px rgba(0, 0, 0, 0.12), 0 3px 8px rgba(140, 70, 95, 0.2);
+  --block-radius: 9px;
+
+  /* 色彩庫 */
+  --c-1: #ff6b8b; /* 草莓糖霜粉 */
+  --c-2: #ff9f43; /* 奶黃起司橙 */
+  --c-3: #ffd166; /* 濃郁布丁黃 */
+  --c-4: #48dbfb; /* 蘇打汽水藍 */
+  --c-5: #66d79f; /* 抹茶薄荷綠 */
+  --c-6: #a29bfe; /* 香芋紫薯泥 */
+  --c-7: #ff7675; /* 蔓越莓紅 */
+}
+
+/* --- 主題 2: 療癒森林 (Healing Zen & Matcha Breeze) --- */
+body.theme-healing {
+  --bg-main: linear-gradient(145deg, #f0f7f2 0%, #e1efe4 50%, #cce5d2 100%);
+  --app-bg: rgba(255, 255, 255, 0.7);
+  --text-main: #233b2a;
+  --text-muted: #53745c;
+  --board-bg: #b9d7c0;
+  --cell-empty: #d8ecdd;
+  --cell-border: #a8cdb0;
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-shadow: 0 8px 24px rgba(65, 110, 77, 0.12), inset 0 2px 0 rgba(255, 255, 255, 0.95);
+  --accent-color: #43895a;
+  --accent-gradient: linear-gradient(135deg, #5dbb7b 0%, #3e8855 100%);
+  --combo-badge-bg: linear-gradient(135deg, #70a07e 0%, #a2d6b0 100%);
+
+  --block-style-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8), inset 0 -2px 3px rgba(35, 60, 42, 0.15), 0 3px 6px rgba(45, 80, 55, 0.18);
+  --block-radius: 10px;
+
+  --c-1: #4ba669; /* 森林蒼翠綠 */
+  --c-2: #7db874; /* 嫩芽抹茶綠 */
+  --c-3: #d1b86e; /* 櫟木金黃 */
+  --c-4: #5ca4a9; /* 山溪冰湖青 */
+  --c-5: #e6a15c; /* 溫暖秋杏 */
+  --c-6: #8c82ab; /* 山嵐晨霧紫 */
+  --c-7: #65b891; /* 苔蘚翡翠 */
+}
+
+/* --- 主題 3: 夢幻果凍 (Pastel Jelly & Gummy Boba) --- */
+body.theme-jelly {
+  --bg-main: linear-gradient(145deg, #ede7f6 0%, #f3e5f5 45%, #e1bee7 100%);
+  --app-bg: rgba(255, 255, 255, 0.6);
+  --text-main: #4a2d59;
+  --text-muted: #7d598e;
+  --board-bg: #d7bfe6;
+  --cell-empty: #ebd9f5;
+  --cell-border: #c8a3db;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: 0 8px 25px rgba(138, 77, 168, 0.16), inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  --accent-color: #9c27b0;
+  --accent-gradient: linear-gradient(135deg, #ba68c8 0%, #ab47bc 100%);
+  --combo-badge-bg: linear-gradient(135deg, #f48fb1 0%, #ce93d8 100%);
+
+  /* 晶瑩剔透果凍質感：高光反光 */
+  --block-style-shadow: inset 0 4px 6px rgba(255, 255, 255, 0.85), inset 0 -4px 6px rgba(0, 0, 0, 0.18), 0 5px 12px rgba(120, 50, 150, 0.28);
+  --block-radius: 12px;
+
+  --c-1: #ec407a; /* 覆盆子軟糖 */
+  --c-2: #ab47bc; /* 葡萄晶凍 */
+  --c-3: #42a5f5; /* 藍柑橘水波 */
+  --c-4: #26a69a; /* 奇異果晶露 */
+  --c-5: #ffa726; /* 蜜桃果凍 */
+  --c-6: #ff7043; /* 紅心芭樂 */
+  --c-7: #7e57c2; /* 薰衣草寒天 */
+}
+
+/* --- 主題 4: 賽博霓虹 (Cyber Neon / Arcade Synthwave) --- */
+body.theme-neon {
+  --bg-main: radial-gradient(circle at 50% 30%, #16192e 0%, #0c0d16 100%);
+  --app-bg: rgba(18, 20, 36, 0.85);
+  --text-main: #e0f2fe;
+  --text-muted: #7dd3fc;
+  --board-bg: #151829;
+  --cell-empty: #1f233d;
+  --cell-border: #2c3258;
+  --card-bg: rgba(26, 30, 54, 0.9);
+  --card-shadow: 0 8px 28px rgba(0, 242, 254, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --accent-color: #00f2fe;
+  --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  --combo-badge-bg: linear-gradient(135deg, #f72585 0%, #7209b7 100%);
+
+  /* 霓虹邊框發光 */
+  --block-style-shadow: inset 0 0 8px rgba(255, 255, 255, 0.6), 0 0 12px currentColor, 0 3px 6px rgba(0, 0, 0, 0.6);
+  --block-radius: 8px;
+
+  --c-1: #ff007f; /* 螢光霓虹桃紅 */
+  --c-2: #00f2fe; /* 電光青藍 */
+  --c-3: #fee140; /* 雷射螢光黃 */
+  --c-4: #05ffa1; /* 矩陣電光綠 */
+  --c-5: #9d4edd; /* 賽博魔幻紫 */
+  --c-6: #ff5400; /* 離子焰火橘 */
+  --c-7: #4361ee; /* 鈷藍雷射 */
+}
+
+/* --- 主題 5: 典雅原木 (Classic Woodoku / Timeless Timber) --- */
+body.theme-wood {
+  --bg-main: linear-gradient(145deg, #f8f4ec 0%, #ede3d1 50%, #dfd1b8 100%);
+  --app-bg: rgba(255, 255, 255, 0.7);
+  --text-main: #432818;
+  --text-muted: #7f5539;
+  --board-bg: #805b3e;
+  --cell-empty: #a8815e;
+  --cell-border: #6d4a2e;
+  --card-bg: rgba(255, 252, 246, 0.9);
+  --card-shadow: 0 8px 24px rgba(78, 52, 34, 0.16), inset 0 2px 0 rgba(255, 255, 255, 0.9);
+  --accent-color: #b07d4b;
+  --accent-gradient: linear-gradient(135deg, #c7915b 0%, #8f5c2c 100%);
+  --combo-badge-bg: linear-gradient(135deg, #ddb892 0%, #b08968 100%);
+
+  /* 質樸木塊刻痕微浮雕 */
+  --block-style-shadow: inset 0 2px 3px rgba(255, 240, 215, 0.7), inset 0 -3px 4px rgba(50, 25, 5, 0.35), 0 3px 6px rgba(45, 25, 10, 0.25);
+  --block-radius: 6px;
+
+  --c-1: #c68642; /* 經典金柚木 */
+  --c-2: #8b5a2b; /* 深色胡桃木 */
+  --c-3: #e0ac69; /* 蜜蠟淺橡木 */
+  --c-4: #6f4e37; /* 炭焙咖啡木 */
+  --c-5: #a0522d; /* 赤紅櫻桃木 */
+  --c-6: #d2a679; /* 原色白樺木 */
+  --c-7: #a97148; /* 琥珀松木 */
+}
+
+/* ========================================================
+   2. 全域基礎重設
+   ======================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  font-family: var(--font-main);
+  background: var(--bg-main);
+  color: var(--text-main);
+  transition: background 0.4s ease, color 0.3s ease;
+}
+
+/* 背景光暈效果 */
+.bg-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(65px);
+  opacity: 0.45;
+  animation: floatOrb 18s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--accent-color), transparent 70%);
+  top: -60px;
+  right: -50px;
+}
+
+.orb-2 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, var(--c-4), transparent 70%);
+  bottom: 10%;
+  left: -80px;
+  animation-duration: 22s;
+}
+
+.orb-3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, var(--c-3), transparent 70%);
+  bottom: -40px;
+  right: 15%;
+  animation-duration: 15s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 40px) scale(1.1); }
+  100% { transform: translate(-25px, 20px) scale(0.95); }
+}
+
+/* ========================================================
+   3. 遊戲主畫面容器 (Game App Layout)
+   ======================================================== */
+#game-app {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: env(safe-area-inset-top, 10px) 14px env(safe-area-inset-bottom, 12px) 14px;
+}
+
+/* 頂部導航 */
+.game-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-badge {
+  font-family: var(--font-num);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: var(--card-bg);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: var(--card-shadow);
+  color: var(--text-main);
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast), background 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.08);
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+/* 分數看板 */
+.score-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.score-card {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 7px 10px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.score-card.score-pulse {
+  animation: cardPulse 0.35s ease;
+}
+
+@keyframes cardPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+.score-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.score-number {
+  font-family: var(--font-num);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+.current-score-card .score-number {
+  color: var(--accent-color);
+}
+
+.combo-card {
+  background: var(--card-bg);
+}
+
+.combo-number {
+  font-family: var(--font-num);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ff9f43;
+}
+
+.combo-active {
+  animation: comboGaze 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes comboGaze {
+  from { transform: scale(1); filter: drop-shadow(0 0 2px #ff9f43); }
+  to { transform: scale(1.08); filter: drop-shadow(0 0 6px #ff5e84); }
+}
+
+/* 主題與方塊切換工具列容器 */
+.selector-controls-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+/* 主題水平滾動選擇列 */
+.theme-selector-bar {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 2px 2px 3px 2px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.theme-selector-bar::-webkit-scrollbar,
+.skin-selector-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.theme-pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card-bg);
+  border: 1.5px solid transparent;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-bounce);
+}
+
+.theme-pill .pill-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.theme-pill:hover {
+  transform: translateY(-1px);
+}
+
+.theme-pill.active {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(1.03);
+}
+
+/* 方塊造形樣式選擇列 (Skin Selector) */
+.skin-selector-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 1px 2px 4px 2px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.selector-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 2px;
+}
+
+.skin-pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--card-bg);
+  border: 1.5px solid transparent;
+  padding: 4px 10px;
+  border-radius: 18px;
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  transition: all var(--transition-bounce);
+}
+
+.skin-pill:hover {
+  transform: translateY(-1px);
+}
+
+.skin-pill.active {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  transform: scale(1.03);
+}
+
+/* 方塊印記與生動精靈容器 (Block Stamp & Vivid Animated Sprites) */
+.block-stamp {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.vivid-sprite {
+  width: 82%;
+  height: 82%;
+  overflow: visible;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.22));
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mini-block .vivid-sprite {
+  width: 76%;
+  height: 76%;
+}
+
+.proxy-block .vivid-sprite {
+  width: 88%;
+  height: 88%;
+  transform: scale(1.08);
+}
+
+/* 互動懸浮：方塊內小精靈開心彈跳回饋 */
+.board-cell.filled:hover .vivid-sprite {
+  transform: scale(1.18);
+}
+
+/* 預覽消除行時：小精靈全體歡呼抖動！極致爽快 anticipation */
+.board-cell.preview-clear-line .vivid-sprite {
+  animation: cheerExcited 0.35s infinite alternate ease-in-out !important;
+}
+
+@keyframes cheerExcited {
+  0% { transform: scale(1.1) translateY(0) rotate(-6deg); }
+  100% { transform: scale(1.25) translateY(-3px) rotate(6deg); }
+}
+
+/* 放置時 Q 彈回饋 */
+.board-cell.just-placed .vivid-sprite {
+  animation: spritePlaceSquash 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes spritePlaceSquash {
+  0% { transform: scale(0.4) rotate(-10deg); }
+  50% { transform: scale(1.28) rotate(5deg); }
+  100% { transform: scale(1); }
+}
+
+/* 1. 靈動眨眼動畫 */
+@keyframes vividBlink {
+  0%, 88%, 100% { transform: scaleY(1); }
+  94% { transform: scaleY(0.1); }
+}
+
+.vivid-eye-pair {
+  transform-origin: center 18px;
+  animation: vividBlink 3.6s infinite ease-in-out;
+}
+
+/* 2. 呼吸腮紅微光動畫 */
+@keyframes blushPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.2); }
+}
+
+.vivid-blush {
+  transform-origin: center;
+  animation: blushPulse 2.8s infinite ease-in-out;
+}
+
+/* 3. 耳朵俏皮微動 */
+@keyframes earTwitchL {
+  0%, 82%, 100% { transform: rotate(0deg); }
+  87% { transform: rotate(-10deg); }
+  92% { transform: rotate(4deg); }
+}
+
+@keyframes earTwitchR {
+  0%, 82%, 100% { transform: rotate(0deg); }
+  87% { transform: rotate(10deg); }
+  92% { transform: rotate(-4deg); }
+}
+
+.ear-left {
+  transform-origin: 12px 14px;
+  animation: earTwitchL 4.2s infinite ease-in-out;
+}
+
+.ear-right {
+  transform-origin: 28px 14px;
+  animation: earTwitchR 4.2s infinite ease-in-out;
+}
+
+/* 4. 葉片/嫩芽隨風搖曳 */
+@keyframes sproutSway {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+
+.vivid-sprout {
+  transform-origin: 20px 10px;
+  animation: sproutSway 2.4s infinite ease-in-out;
+}
+
+/* 5. 寶石璀璨星芒旋轉閃耀 */
+@keyframes starGlint {
+  0% { transform: rotate(0deg) scale(0.85); opacity: 0.7; }
+  50% { transform: rotate(90deg) scale(1.25); opacity: 1; filter: drop-shadow(0 0 5px #ffffff); }
+  100% { transform: rotate(180deg) scale(0.85); opacity: 0.7; }
+}
+
+.vivid-glint {
+  transform-origin: center;
+  animation: starGlint 3s infinite ease-in-out;
+}
+
+/* 6. 賽博環形軌道旋轉 */
+@keyframes orbitRingCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbitRingCCW {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.orbit-cw {
+  transform-origin: 20px 20px;
+  animation: orbitRingCW 4s linear infinite;
+}
+
+.orbit-ccw {
+  transform-origin: 20px 20px;
+  animation: orbitRingCCW 3.2s linear infinite;
+}
+
+/* 7. 能量核心高能脈衝 */
+@keyframes plasmaPulse {
+  0%, 100% { transform: scale(0.92); opacity: 0.85; filter: drop-shadow(0 0 3px #00f2fe); }
+  50% { transform: scale(1.12); opacity: 1; filter: drop-shadow(0 0 8px #00f2fe); }
+}
+
+.vivid-core {
+  transform-origin: 20px 20px;
+  animation: plasmaPulse 1.6s infinite ease-in-out;
+}
+
+/* 8. 冰晶微光閃動 (Ice Frost Shimmer) */
+@keyframes iceFrostShimmer {
+  0%, 100% { opacity: 0.75; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 5px #70e1f5); }
+}
+
+.ice-frost {
+  transform-origin: center;
+  animation: iceFrostShimmer 2.6s infinite ease-in-out;
+}
+
+/* 9. 甜點布丁 Q 彈微動 (Pudding Squishy Wobble) */
+@keyframes puddingSquish {
+  0%, 100% { transform: scale(1, 1); }
+  30% { transform: scale(1.08, 0.92); }
+  60% { transform: scale(0.95, 1.05); }
+}
+
+.pudding-wobble {
+  transform-origin: center bottom;
+  animation: puddingSquish 2.4s infinite ease-in-out;
+}
+
+/* ========================================================
+   方塊多樣造形系統 (5 Distinct Block Skins: 甜點、冰品、珍奶、脆皮、可可)
+   ======================================================== */
+
+/* 1. 夢幻甜點 (Dreamy Desserts) - 酥皮海綿蛋糕、草莓奶霜與烘焙金黃 */
+[data-skin="dessert"] .board-cell.filled,
+[data-skin="dessert"] .mini-block,
+[data-skin="dessert"] .proxy-block {
+  border-radius: 13px;
+  background-image:
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(100, 40, 20, 0.12) 100%);
+  box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.85), inset 0 -3px 4px rgba(80, 30, 20, 0.15), 0 4px 10px rgba(180, 80, 60, 0.18);
+}
+
+/* 2. 清涼冰品 (Glacial Ice) - 冰透沁涼、霜氣反光與冰晶折射 */
+[data-skin="ice"] .board-cell.filled,
+[data-skin="ice"] .mini-block,
+[data-skin="ice"] .proxy-block {
+  border-radius: 9px;
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(200, 245, 255, 0.35) 45%, rgba(100, 210, 255, 0.18) 100%),
+    linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.5) 50%, transparent 60%);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.95), inset 0 2px 7px rgba(255, 255, 255, 0.95), 0 4px 14px rgba(0, 168, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* 3. 波霸軟糖 (Boba & Jellies) - 晶瑩剔透Q彈水滴感 */
+[data-skin="boba"] .board-cell.filled,
+[data-skin="boba"] .mini-block,
+[data-skin="boba"] .proxy-block,
+[data-skin="kawaii"] .board-cell.filled,
+[data-skin="kawaii"] .mini-block,
+[data-skin="kawaii"] .proxy-block {
+  border-radius: 14px;
+  background-image: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.8) 0%, transparent 55%);
+  box-shadow: inset 0 4px 6px rgba(255, 255, 255, 0.85), inset 0 -4px 6px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(160, 80, 200, 0.22);
+}
+
+/* 4. 脆皮捏捏 (Crunchy Taba) - 酥皮糖霜與鬆餅烘焙感 */
+[data-skin="crunchy"] .board-cell.filled,
+[data-skin="crunchy"] .mini-block,
+[data-skin="crunchy"] .proxy-block {
+  border-radius: 11px;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
+  background-size: 7px 7px, 100% 100%;
+  box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.85), inset 0 -3px 4px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 5. 濃醇可可 (Artisan Chocolate) - 絲滑可可、倒角凹槽與金箔微光 */
+[data-skin="chocolate"] .board-cell.filled,
+[data-skin="chocolate"] .mini-block,
+[data-skin="chocolate"] .proxy-block {
+  border-radius: 7px;
+  background-image:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.35) 0%, transparent 50%, rgba(0, 0, 0, 0.25) 100%);
+  box-shadow: inset 0 2px 4px rgba(255, 240, 220, 0.45), inset 0 -2px 4px rgba(30, 10, 5, 0.5), 0 4px 10px rgba(60, 25, 15, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* 相容既有皮膚設定 */
+[data-skin="gem"] .board-cell.filled,
+[data-skin="gem"] .mini-block,
+[data-skin="gem"] .proxy-block {
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.7), inset 0 2px 5px rgba(255, 255, 255, 0.9), 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-skin="botanical"] .board-cell.filled,
+[data-skin="botanical"] .mini-block,
+[data-skin="botanical"] .proxy-block {
+  border-radius: 12px;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8), inset 0 0 0 1.5px rgba(255, 255, 255, 0.4), inset 0 -3px 4px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+[data-skin="cyber"] .board-cell.filled,
+[data-skin="cyber"] .mini-block,
+[data-skin="cyber"] .proxy-block {
+  border-radius: 4px;
+  border: 1.5px solid rgba(255, 255, 255, 0.88);
+  box-shadow: 0 0 12px currentColor, inset 0 0 8px rgba(255, 255, 255, 0.75);
+}
+
+/* ========================================================
+   4. 主棋盤區域 (Game Board & Canvas)
+   ======================================================== */
+.game-board-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+  padding: 4px 0;
+}
+
+/* 粒子畫布覆蓋層 */
+#fx-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* 浮動讚美字容器 */
+#float-texts-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 12;
+  overflow: hidden;
+}
+
+.float-msg {
+  position: absolute;
+  font-family: var(--font-num);
+  font-weight: 800;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  animation: floatUpFade 1.1s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+  pointer-events: none;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.15;
+}
+
+.float-msg .primary-text {
+  font-size: 1.6rem;
+  background: linear-gradient(180deg, #ffffff, #ffe699);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+.float-msg .sub-text {
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+@keyframes floatUpFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px) scale(0.6) rotate(-5deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -10px) scale(1.15) rotate(2deg);
+  }
+  40% {
+    transform: translate(-50%, -20px) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -80px) scale(0.85);
+  }
+}
+
+/* 棋盤外框 Wrapper */
+.board-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: var(--board-max-size);
+  aspect-ratio: 1 / 1;
+  background: var(--board-bg);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s ease, box-shadow 0.3s;
+}
+
+/* 震動回饋 */
+.shake-sm {
+  animation: screenShakeSm 0.25s ease-out;
+}
+.shake-md {
+  animation: screenShakeMd 0.35s ease-out;
+}
+.shake-lg {
+  animation: screenShakeLg 0.45s ease-out;
+}
+
+@keyframes screenShakeSm {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3px, 2px); }
+  50% { transform: translate(3px, -2px); }
+  75% { transform: translate(-2px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes screenShakeMd {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-6px, 4px) rotate(-0.5deg); }
+  40% { transform: translate(5px, -4px) rotate(0.5deg); }
+  60% { transform: translate(-4px, 3px); }
+  80% { transform: translate(3px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes screenShakeLg {
+  0% { transform: translate(0, 0) scale(1); }
+  15% { transform: translate(-9px, 6px) scale(1.02) rotate(-1deg); }
+  35% { transform: translate(8px, -6px) scale(1.02) rotate(1deg); }
+  55% { transform: translate(-6px, 4px) scale(0.99); }
+  75% { transform: translate(5px, -3px) scale(1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* 8x8 格子系統 */
+.game-board {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: var(--cell-gap);
+}
+
+.board-cell {
+  background-color: var(--cell-empty);
+  border-radius: var(--cell-radius);
+  position: relative;
+  transition: background-color 0.2s ease, transform var(--transition-bounce), box-shadow 0.2s ease;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* 格子有實體方塊時 */
+.board-cell.filled,
+.mini-block,
+.proxy-block {
+  box-shadow: var(--block-style-shadow);
+  border-radius: var(--block-radius);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 脆皮捏捏：精緻糖霜高光條與軟綿厚度感 (3D Taba Squishy Gloss) */
+body.theme-crunchy .board-cell.filled::before,
+body.theme-crunchy .proxy-block::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 12%;
+  width: 76%;
+  height: 38%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 100%);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+body.theme-crunchy .board-cell.filled::after,
+body.theme-crunchy .proxy-block::after {
+  content: '';
+  position: absolute;
+  bottom: 8%;
+  right: 10%;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  filter: blur(0.5px);
+  pointer-events: none;
+}
+
+/* 療癒森林：柔和霧面陶瓷與微浮雕自然光澤 */
+body.theme-healing .board-cell.filled::before,
+body.theme-healing .proxy-block::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+
+/* 夢幻果凍：Q彈水光倒影與剔透高光球 */
+body.theme-jelly .board-cell.filled::before,
+body.theme-jelly .proxy-block::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 10%;
+  width: 45%;
+  height: 45%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+body.theme-jelly .board-cell.filled::after,
+body.theme-jelly .proxy-block::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* 賽博霓虹：高能雷射光核與發光核心點 */
+body.theme-neon .board-cell.filled::before,
+body.theme-neon .proxy-block::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 4px;
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+/* 典雅原木：精緻木紋凹槽倒角邊界 */
+body.theme-wood .board-cell.filled::before,
+body.theme-wood .proxy-block::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed rgba(255, 245, 230, 0.35);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+/* 剛放置時的 Q 彈果凍捏捏動畫 */
+.board-cell.just-placed {
+  animation: squishyPlace 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes squishyPlace {
+  0% { transform: scale(0.3) rotate(-6deg); }
+  50% { transform: scale(1.18) rotate(3deg); }
+  80% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+/* 預覽放置時的高亮 (Ghost Placement Preview) */
+.board-cell.preview-valid {
+  opacity: 0.65;
+  box-shadow: inset 0 0 0 2px #ffffff, 0 0 8px rgba(255, 255, 255, 0.7);
+  transform: scale(0.96);
+}
+
+/* 預覽將要消除的整行或整列脈衝閃爍！極爽回饋感 */
+.board-cell.preview-clear-line {
+  animation: pulseClearCandidate 0.4s infinite alternate ease-in-out;
+  box-shadow: 0 0 12px #fff, inset 0 0 6px #fff !important;
+}
+
+@keyframes pulseClearCandidate {
+  from { filter: brightness(1.1) saturate(1.1); transform: scale(0.98); }
+  to { filter: brightness(1.6) saturate(1.4); transform: scale(1.05); }
+}
+
+/* 正在消除時的酥脆爆破動畫 (Crunch Snap & Pop) */
+.board-cell.clearing {
+  animation: crunchExplode 0.32s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+  z-index: 5;
+}
+
+@keyframes crunchExplode {
+  0% {
+    transform: scale(1);
+    filter: brightness(2) drop-shadow(0 0 10px #ffffff);
+  }
+  40% {
+    transform: scale(1.25) rotate(5deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(0) rotate(-15deg);
+    opacity: 0;
+  }
+}
+
+/* 道具技能列 (Power-ups) */
+.powerups-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.powerup-btn {
+  background: var(--card-bg);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  transition: transform var(--transition-fast), background 0.2s;
+}
+
+.powerup-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.powerup-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.powerup-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.powerup-btn .badge {
+  background: var(--accent-color);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  padding: 1px 6px;
+  font-family: var(--font-num);
+}
+
+.powerup-btn.active-mode {
+  background: var(--accent-gradient);
+  color: #fff;
+  animation: pulseTool 0.7s infinite alternate;
+}
+
+@keyframes pulseTool {
+  from { transform: scale(1); box-shadow: 0 0 6px var(--accent-color); }
+  to { transform: scale(1.08); box-shadow: 0 0 14px var(--accent-color); }
+}
+
+/* ========================================================
+   5. 下方待選方塊槽 (Pieces Dock)
+   ======================================================== */
+.pieces-dock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  height: 125px;
+  padding: 4px 6px 6px 6px;
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.piece-slot {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.03);
+  touch-action: none; /* 防止手機滑動干擾拖曳 */
+  cursor: grab;
+  transition: background 0.2s ease, transform var(--transition-bounce);
+}
+
+.piece-slot:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.piece-slot.slot-empty {
+  cursor: default;
+  background: transparent;
+}
+
+.piece-slot.selected {
+  outline: 2.5px solid var(--accent-color);
+  background: rgba(255, 94, 132, 0.08);
+}
+
+/* 槽位內的微型方塊網格 (Mini Shape Grid) */
+.piece-shape {
+  display: grid;
+  gap: 3px;
+  pointer-events: none;
+  transition: transform var(--transition-bounce);
+}
+
+.piece-shape .mini-block {
+  width: 19px;
+  height: 19px;
+  border-radius: 5px;
+  box-shadow: var(--block-style-shadow);
+}
+
+/* ========================================================
+   6. 拖曳中代理方塊 (Drag Proxy Floating Element)
+   ======================================================== */
+.drag-proxy {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1000;
+  display: none;
+  transform: translate3d(-9999px, -9999px, 0);
+  opacity: 0.95;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
+  will-change: transform;
+}
+
+.drag-proxy.active {
+  display: block;
+}
+
+.drag-proxy .proxy-shape {
+  display: grid;
+  gap: var(--cell-gap);
+  transform: scale(1.05);
+  animation: squishyDragBounce 0.6s infinite alternate ease-in-out;
+}
+
+@keyframes squishyDragBounce {
+  0% { transform: scale(1.04) rotate(-0.5deg); }
+  100% { transform: scale(1.07) rotate(0.5deg); }
+}
+
+.drag-proxy .proxy-block {
+  border-radius: var(--block-radius);
+  box-shadow: var(--block-style-shadow);
+}
+
+/* ========================================================
+   7. 彈跳視窗 (Modals)
+   ======================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 18, 30, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: var(--card-bg);
+  color: var(--text-main);
+  width: 100%;
+  max-width: 360px;
+  border-radius: 24px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.9);
+  transform: scale(0.85);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.open .modal-card {
+  transform: scale(1);
+}
+
+.modal-decoration {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -10px auto 14px auto;
+  box-shadow: 0 8px 18px rgba(255, 94, 132, 0.35);
+}
+
+.modal-icon {
+  font-size: 2.2rem;
+  color: #fff;
+}
+
+.modal-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.modal-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.modal-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.modal-stat-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 10px 16px;
+  border-radius: 12px;
+}
+
+.stat-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.stat-val {
+  font-family: var(--font-num);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.stat-val.highlight {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+}
+
+.primary-btn {
+  background: var(--accent-gradient);
+  border: none;
+  color: #fff;
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 13px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 94, 132, 0.38);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform var(--transition-fast), box-shadow 0.2s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255, 94, 132, 0.48);
+}
+
+.primary-btn:active {
+  transform: translateY(1px);
+}
+
+.primary-btn.pulse {
+  animation: btnPulse 1.8s infinite;
+}
+
+@keyframes btnPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* 玩法說明彈窗 */
+.help-card {
+  max-width: 420px;
+  text-align: left;
+}
+
+.modal-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.help-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.help-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.help-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--accent-gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+.help-desc strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.help-desc p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* ========================================================
+   8. 響應式優化 (Responsive Adjustments)
+   ======================================================== */
+@media (max-height: 680px) {
+  #game-app {
+    padding: 6px 10px;
+  }
+  .brand-title {
+    font-size: 1.15rem;
+  }
+  .score-card {
+    padding: 4px 8px;
+  }
+  .score-number {
+    font-size: 1.2rem;
+  }
+  .pieces-dock {
+    height: 100px;
+  }
+  .piece-shape .mini-block {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (min-width: 600px) {
+  #game-app {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .board-wrapper {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .pieces-dock {
+    height: 135px;
+  }
+  .piece-shape .mini-block {
+    width: 22px;
+    height: 22px;
+  }
+}

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="療癒脆皮捏捏版 Block Blast 方塊消消樂！多種主題風格（脆皮捏捏、療癒森林、夢幻果凍、賽博霓虹、典雅原木），極致手感與 ASMR 爆破消除音效！">
+  <title>Block Blast! 脆皮捏捏消消樂</title>
+
+  <!-- Google Fonts: 圓潤清爽現代字型 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dessert" data-skin="dessert">
+  <!-- 背景動態光暈與漂浮氣泡 -->
+  <div class="bg-decorations" aria-hidden="true">
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+  </div>
+
+  <div id="game-app">
+    <!-- 頂部導航 / 標題與控制 -->
+    <header class="game-header">
+      <div class="header-top">
+        <div class="brand">
+          <span class="brand-badge"><i class="fa-solid fa-shapes"></i> BLOCK BLAST</span>
+          <h1 class="brand-title">脆皮捏捏消消樂</h1>
+        </div>
+        <div class="header-actions">
+          <button id="theme-btn" class="icon-btn" title="切換主題情境" aria-label="切換主題情境">
+            <i class="fa-solid fa-palette"></i>
+          </button>
+          <button id="skin-btn" class="icon-btn" title="切換方塊樣式造型" aria-label="切換方塊樣式造型">
+            <i class="fa-solid fa-shapes"></i>
+          </button>
+          <button id="sound-btn" class="icon-btn" title="切換音效" aria-label="切換音效">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <button id="help-btn" class="icon-btn" title="玩法說明" aria-label="玩法說明">
+            <i class="fa-solid fa-circle-question"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 分數看板 -->
+      <div class="score-dashboard">
+        <div class="score-card current-score-card">
+          <span class="score-label"><i class="fa-solid fa-star"></i> 目前得分</span>
+          <span id="current-score" class="score-number">0</span>
+        </div>
+        <div class="score-card combo-card" id="combo-display-card">
+          <span class="score-label"><i class="fa-solid fa-bolt"></i> 連擊 COMBO</span>
+          <span id="combo-badge" class="combo-number">x0</span>
+        </div>
+        <div class="score-card best-score-card">
+          <span class="score-label"><i class="fa-solid fa-crown"></i> 歷史最高</span>
+          <span id="best-score" class="score-number">0</span>
+        </div>
+      </div>
+
+      <!-- 主題與方塊切換工具列 -->
+      <div class="selector-controls-wrapper">
+        <!-- 主題情境標籤 -->
+        <div class="theme-selector-bar" id="theme-selector">
+          <button class="theme-pill active" data-theme="dessert" title="甜品午茶 (溫潤草莓奶霜與甜蜜茶點暖光)">
+            <span class="pill-dot" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);"></span>
+            <span class="pill-text">甜品午茶</span>
+          </button>
+          <button class="theme-pill" data-theme="ice" title="極地清冰 (透涼冰河藍與沁心碎冰)">
+            <span class="pill-dot" style="background: linear-gradient(135deg, #70e1f5, #99f2c8);"></span>
+            <span class="pill-text">極地清冰</span>
+          </button>
+          <button class="theme-pill" data-theme="crunchy" title="脆皮捏捏 (酥脆烘焙與糖霜 ASMR)">
+            <span class="pill-dot" style="background: linear-gradient(135deg, #f6d365, #fda085);"></span>
+            <span class="pill-text">脆皮捏捏</span>
+          </button>
+          <button class="theme-pill" data-theme="jelly" title="波霸果凍 (Q 彈珍珠與水晶軟糖)">
+            <span class="pill-dot" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);"></span>
+            <span class="pill-text">波霸果凍</span>
+          </button>
+          <button class="theme-pill" data-theme="healing" title="療癒森林 (抹茶清香與沉靜自然)">
+            <span class="pill-dot" style="background: linear-gradient(135deg, #70a07e, #c2e2c9);"></span>
+            <span class="pill-text">療癒森林</span>
+          </button>
+        </div>
+
+        <!-- 方塊造形樣式標籤 (Block Skins: 甜點、冰品、珍奶、脆皮、可可) -->
+        <div class="skin-selector-bar" id="skin-selector">
+          <span class="selector-badge"><i class="fa-solid fa-shapes"></i> 圖案造形</span>
+          <button class="skin-pill active" data-skin="dessert" title="夢幻甜點 (草莓蛋糕、布丁、馬卡龍、甜甜圈)">
+            <i class="fa-solid fa-cake-candles"></i> 夢幻甜點
+          </button>
+          <button class="skin-pill" data-skin="ice" title="清涼冰品 (晶透冰塊、雙色冰棒、霜淇淋、富士刨冰)">
+            <i class="fa-solid fa-icicles"></i> 清涼冰品
+          </button>
+          <button class="skin-pill" data-skin="boba" title="波霸軟糖 (珍珠奶茶杯、小熊軟糖、水信玄餅)">
+            <i class="fa-solid fa-cubes-stacked"></i> 波霸軟糖
+          </button>
+          <button class="skin-pill" data-skin="crunchy" title="脆皮捏捏 (比利時鬆餅、巧克力脆餅、糖霜泡芙)">
+            <i class="fa-solid fa-cookie-bite"></i> 脆皮捏捏
+          </button>
+          <button class="skin-pill" data-skin="chocolate" title="濃醇可可 (格子黑巧磚、金箔松露球、草莓白巧)">
+            <i class="fa-solid fa-square"></i> 濃醇可可
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 主遊戲區 -->
+    <main class="game-board-container" id="board-container">
+      <!-- 畫布：特效粒子層 -->
+      <canvas id="fx-canvas"></canvas>
+
+      <!-- 連擊與讚美特效浮空字 -->
+      <div id="float-texts-container"></div>
+
+      <!-- 8x8 棋盤網格 -->
+      <div class="board-wrapper" id="board-wrapper">
+        <div id="game-board" class="game-board" role="grid" aria-label="8乘8方塊棋盤">
+          <!-- 64個格子動態由 JS 生成 -->
+        </div>
+      </div>
+
+      <!-- 輔助道具道具欄 -->
+      <div class="powerups-bar">
+        <button id="btn-undo" class="powerup-btn" title="上一步復原 (剩餘 2 次)">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span>復原</span>
+          <span class="badge" id="undo-count">2</span>
+        </button>
+        <button id="btn-bomb" class="powerup-btn" title="炸彈道具：清除 3x3 區域">
+          <i class="fa-solid fa-bomb"></i>
+          <span>炸彈</span>
+          <span class="badge" id="bomb-count">1</span>
+        </button>
+        <button id="btn-refresh" class="powerup-btn" title="刷新下方方塊組合">
+          <i class="fa-solid fa-shuffle"></i>
+          <span>換一組</span>
+          <span class="badge" id="refresh-count">1</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- 下方待放置的 3 個方塊選取槽 -->
+    <footer class="pieces-dock" id="pieces-dock">
+      <div class="piece-slot" id="slot-0" data-slot="0"></div>
+      <div class="piece-slot" id="slot-1" data-slot="1"></div>
+      <div class="piece-slot" id="slot-2" data-slot="2"></div>
+    </footer>
+  </div>
+
+  <!-- 拖曳中方塊的跟隨層（保證在最頂層且指尖無遮擋） -->
+  <div id="drag-proxy" class="drag-proxy" aria-hidden="true"></div>
+
+  <!-- 遊戲結束彈跳視窗 -->
+  <div class="modal-overlay" id="game-over-modal">
+    <div class="modal-card">
+      <div class="modal-decoration">
+        <i class="fa-solid fa-face-sad-tear modal-icon"></i>
+      </div>
+      <h2 class="modal-title">哎呀，沒有空間了！</h2>
+      <p class="modal-subtitle">深呼吸～隨時都能再來一局爽快消除！</p>
+      
+      <div class="modal-stats">
+        <div class="modal-stat-box">
+          <span class="stat-title">本次得分</span>
+          <span class="stat-val highlight" id="modal-final-score">0</span>
+        </div>
+        <div class="modal-stat-box">
+          <span class="stat-title">歷史最高</span>
+          <span class="stat-val" id="modal-best-score">0</span>
+        </div>
+        <div class="modal-stat-box">
+          <span class="stat-title">最大連擊</span>
+          <span class="stat-val" id="modal-max-combo">0 COMBO</span>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="btn-restart" class="primary-btn pulse">
+          <i class="fa-solid fa-play"></i> 再玩一局！
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 玩法說明彈窗 -->
+  <div class="modal-overlay" id="help-modal">
+    <div class="modal-card help-card">
+      <div class="modal-header-row">
+        <h2 class="modal-title"><i class="fa-solid fa-gamepad"></i> 玩法說明</h2>
+        <button id="btn-close-help" class="close-btn">&times;</button>
+      </div>
+      <div class="help-content">
+        <div class="help-item">
+          <div class="help-icon"><i class="fa-solid fa-hand-pointer"></i></div>
+          <div class="help-desc">
+            <strong>拖曳或點選擺放：</strong>
+            <p>將下方的 3 個方塊拖入上方 8x8 棋盤中，亦可先點擊方塊再點擊棋盤格子放置！</p>
+          </div>
+        </div>
+        <div class="help-item">
+          <div class="help-icon"><i class="fa-solid fa-border-all"></i></div>
+          <div class="help-desc">
+            <strong>填滿整行或整列消除：</strong>
+            <p>只要填滿任意一行（橫）或一列（直）即可觸發爽快爆破！同時消除多行多列得分倍增！</p>
+          </div>
+        </div>
+        <div class="help-item">
+          <div class="help-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+          <div class="help-desc">
+            <strong>維持連擊 (COMBO)：</strong>
+            <p>連續幾步內每次都成功消除，連擊等級將激升，觸發華麗音效與額外分數狂飆！</p>
+          </div>
+        </div>
+        <div class="help-item">
+          <div class="help-icon"><i class="fa-solid fa-cake-candles"></i></div>
+          <div class="help-desc">
+            <strong>甜點與冰品豐富造型：</strong>
+            <p>點擊頂部圖案造形標籤，可隨時在「夢幻甜點」、「清涼冰品」、「波霸軟糖」、「脆皮捏捏」、「濃醇可可」間切換！</p>
+          </div>
+        </div>
+      </div>
+      <button id="btn-got-it" class="primary-btn">我知道了，開始暢玩！</button>
+    </div>
+  </div>
+
+  <!-- 引入音效合成引擎與遊戲主邏輯腳本 -->
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
